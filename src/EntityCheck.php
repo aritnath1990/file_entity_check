@@ -1,5 +1,5 @@
 <?php
-namespace Drupal\file_entity_check;
+namespace Drupal\file_checker;
 class EntityCheck {
   public static function entityCheck($q1, &$context){
 	$message = 'Checking File Entity Exist...';
@@ -34,7 +34,10 @@ class EntityCheck {
       $message = t('Finished with an error.');
     }
     drupal_set_message($message);
-    dsm ($results);
+    if( sizeof($results)>0) {
+		$results_string=implode("<br>", $results);
+		\Drupal::logger('file_checker')->notice('@variable: '.$results_string.' %title.', array('@variable' => 'Media Missing ','%title' => $results_string, ));
+	}
     
   }
 }
