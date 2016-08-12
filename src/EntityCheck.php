@@ -8,13 +8,13 @@ class EntityCheck {
          {
 			 if(substr($r,0,1)=="p") {
 				 if(!file_exists($r)) {
-					 $results[] =$r ."-----Not Exists";
+					 $results[] =$r;
 				 }
 			 
 			 }
 			 else {
 				 if(!file_exists($r)) {
-					 $results[] =$r ."-----Not Exists";
+					 $results[] =$r;
 				 }
 			 }
 		 }
@@ -33,10 +33,10 @@ class EntityCheck {
     else {
       $message = t('Finished with an error.');
     }
-    drupal_set_message($message);
+    //drupal_set_message($message);
     if( sizeof($results)>0) {
-		$results_string=implode("<br>", $results);
-		\Drupal::logger('file_checker')->notice('@variable: '.$results_string.' %title.', array('@variable' => 'Media Missing ','%title' => $results_string, ));
+		$results_string="<pre>".implode(",\n", $results)."</pre>";
+		\Drupal::logger('file_checker')->notice('@variable: '.$results_string, array('@variable' => 'Media Missing ', ));
 	}
     
   }

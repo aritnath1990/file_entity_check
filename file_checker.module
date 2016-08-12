@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Implements hook_cron().
+ */
+function file_checker_cron() {
+  \Drupal::logger('file_checker1')->notice('cron hook run module');
+}
